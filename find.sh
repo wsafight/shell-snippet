@@ -101,4 +101,21 @@ find . -type f -perm 644 -print
 # user 找出由某个特定用户所拥有的文件。
 find . -user xxx -print
 
-find . -type f -name "*.temp" -delete
+# -delete 删除匹配到的文件 
+# find . -type f -name "temp.txt" -delete
+
+# -exec 执行命令
+# {} 代表文件名
+# 注意该命令结尾的\;。必须对分号进行转义，否则shell会将其视为find命 令的结束，而非chown命令的结束。
+# 修改所有权
+# find . -type f -user root -exec chown slynux {} \;
+
+# 10 天前的 .txt 文件复制到 OLD 目录中
+find . -type f -mtime +10 -name "*.txt" -exec cp {} OLD \;
+
+# exec 可以执行脚本
+# -exec ./commands.sh {} \;
+
+# -prune 排除某些目录或文件的功能，修剪
+# -name ".git" –prune 指明了 .git 目录应该被排除
+find . -name '.git' -prune -o -type f -print
