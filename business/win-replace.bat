@@ -5,8 +5,7 @@ set rootDir=%~dp0
 
 :: 跳转临时文件夹
 cd temp
-REM call yarn install --registry http://registry.sowtrading-local.com
-
+REM call yarn install
 :: 执行 yarn build
 call yarn build
 
